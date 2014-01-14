@@ -5,20 +5,6 @@ var keypress = require('keypress');
 
 program
   .version('1.0.0')
-  .option('-s --startAt <0-360>', 'start at', Number)
-  .option('-r, --rotateDegrees', 'rotate degrees', Number)
-  // .option('-s, --speed <0-1>', 'speed', Number);
-  .parse(process.argv);
-
-// if(!program.startAt) {
-//   program.startAt = 0;
-// }
-
-// if(!program.rotateDegrees) {
-//   console.log('need rotate degrees');
-//   process.exit(1);
-// }
-
 
 board.on("ready", function() {
   console.log("board ready. left right arrow keys, 'q' to quit.");
@@ -42,6 +28,4 @@ board.on("ready", function() {
 
   process.stdin.setRawMode(true);
   process.stdin.resume();
-
-  // process.exit(0);
 });
