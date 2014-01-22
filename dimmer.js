@@ -1,5 +1,7 @@
+var PIN = 9;
+
 var five = require("johnny-five"), 
-    board = new five.Board( { port: "/dev/cu.usbserial-A9C37XL5", pins: [9] }),
+    board = new five.Board( { pins: [PIN] }),
     servo;
 var program = require('commander');
 var keypress = require('keypress');
