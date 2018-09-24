@@ -9,7 +9,7 @@ program
 board.on("ready", function() {
   console.log("board ready. left right arrow keys, 'q' to quit.");
   var servo = new five.Servo({
-    "pin": 9,
+    "pin": 11,
     "startAt":program.startAt
     });
   process.stdin.on('keypress', function (ch, key) {
