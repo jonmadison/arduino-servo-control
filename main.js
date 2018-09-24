@@ -1,3 +1,6 @@
+var five = require("johnny-five"), 
+    board = new five.Board();
+
 // Modules to control application life and create native browser window
 const {app, BrowserWindow} = require('electron')
 
@@ -7,7 +10,12 @@ let mainWindow
 
 function createWindow () {
   // Create the browser window.
-  mainWindow = new BrowserWindow({width: 800, height: 600})
+  mainWindow = new BrowserWindow({width: 1200, 
+                                height: 800,
+                                backgroundColor: "#ee943b"
+                              })
+
+  mainWindow.setFullScreen(true)
 
   // and load the index.html of the app.
   mainWindow.loadFile('index.html')
@@ -46,5 +54,41 @@ app.on('activate', function () {
   }
 })
 
+board.on("ready", function() {
+  mainWindow.webContents.send('board-ready',true);
+
+  // Create a new `joystick` hardware instance.
+  var joystick = new five.Joystick({
+    //   [ x, y ]
+    pins: ["A0", "A1"]
+  });
+
+  joystick.on("change", function() {
+    let to_x = ((this.x+1) * 180)/2
+    let to_y = ((this.y+1) * 180)/2
+    mainWindow.webContents.send('servo-to',to_x, to_y);
+    servo.to(to_x)
+  });
+
+  // Create a new `button` hardware instance.
+  var button = new five.Button(2);
+
+  button.on("hold", function() {
+    mainWindow.webContents.send('button-held');
+  });
+
+  button.on("press", function() {
+    mainWindow.webContents.send('button-pressed');
+  });
+
+  button.on("release", function() {
+    mainWindow.webContents.send('button-released');
+  });
+
+  var servo = new five.Servo({
+    startAt: 0,
+    "pin": 11
+    });
+});
 // In this file you can include the rest of your app's specific main process
 // code. You can also put them in separate files and require them here.
