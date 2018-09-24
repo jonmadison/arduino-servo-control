@@ -8,6 +8,16 @@ program
 
 board.on("ready", function() {
   console.log("board ready. left right arrow keys, 'q' to quit.");
+  // Create a new `joystick` hardware instance.
+  var joystick = new five.Joystick({
+    //   [ x, y ]
+    pins: ["A0", "A1"]
+  });
+
+  joystick.on("change", function() {
+    servo.to(this.x * 180)
+  });
+
   var servo = new five.Servo({
     "pin": 11,
     "startAt":program.startAt
