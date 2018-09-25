@@ -3,6 +3,10 @@
   "version": "1.0.0",
   "description": "A Misfit toy",
   "main": "main.js",
+  "engines": {
+    "node": ">=10.0"
+  },
+  "engineStrict": true,
   "scripts": {
     "start": "electron .",
     "pack": "build --dir",
@@ -17,7 +21,8 @@
   "author": "jonmadi@amazon.com",
   "license": "CC0-1.0",
   "devDependencies": {
-    "electron": "^2.0.0"
+    "electron": "^2.0.0",
+    "electron-rebuild": "^1.8.2"
   },
   "dependencies": {
     "animate.css": "^3.7.0",

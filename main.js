@@ -30,7 +30,13 @@ function createWindow () {
     // when you should delete the corresponding element.
     mainWindow = null
   })
+
+  mainWindow.webContents.on('did-finish-load',() => {
+    mainWindow.webContents.send( 'dom-is-ready' );
+  });
+
 }
+
 
 // This method will be called when Electron has finished
 // initialization and is ready to create browser windows.

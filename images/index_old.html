@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link rel="stylesheet" href="./style.css"/>
+    <meta charset="UTF-8">
+    <title>Dumb Spider Toy</title>
+  </head>
+  <body>
+    <h1>Dumb SPider TOy!</h1>
+    <div id="instructions">
+    I've kidnapped a spider and attached them to a servo. Poor spider
+      will never find its buddy :(  
+      Use the joystick to move the Spider Buddy around on the screen.  
+      You can also press the tiny button to the left of the joystick if you dare.
+    </div>
+    <canvas id="wall_canvas" width="100%" height="100%"></canvas>        
+
+    <div id="message"></div>
+    <div class="servo-indicator"><img id="indicator-container" src="./images/spidey.png"/></div>
+    <div id="servo-to"></div>
+    <script>
+      // You can also require other files to run in this process
+      require('./renderer.js')
+    </script>
+  </body>
+</html>
+

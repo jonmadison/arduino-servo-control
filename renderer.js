@@ -14,6 +14,15 @@ message.innerHTML = 'Waiting for Board...'
 let servo_to = document.getElementById('servo-to')
 let to_x, to_y, last_to_x, last_to_y
 
+// let ctx = document.getElementById('wall_canvas').getContext('2d');
+// let img = new Image
+// img.src = "images/spidey.png"
+
+// ipcRenderer.on('dom-is-ready', () => {
+//     alert('move')
+//     moveImageCanvas(100,100)
+// })
+
 
 ipcRenderer.on('board-ready', function(event) {
     console.log("board is ready in renderer")
@@ -25,7 +34,7 @@ let indicators = document.getElementsByClassName('servo-indicator')
 ipcRenderer.on('button-pressed', function(event) {
     console.log('button-pressed')
     let ic = document.getElementById('indicator-container')
-    ic.style.backgroundColor = '#40FF40';
+    ic.style.backgroundColor = '#ff4040';
     ic.animate(
         [
           { transform: 'rotate(0)', color: '#000' },
@@ -37,7 +46,7 @@ ipcRenderer.on('button-pressed', function(event) {
         }
       );
       audio.play();
-    message.innerHTML = 'held'
+    message.innerHTML = 'pressed'
 })
 
 // ipcRenderer.on('button-pressed', function(event) {
@@ -51,6 +60,20 @@ ipcRenderer.on('button-released', function(event) {
     message.innerHTML = 'released'
 })
 
+let moveImageCanvas = (x, y) => {
+    alert(`moveImageCanvas ${x}, ${y}`);
+    (function() {        
+        return function () {
+        ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height);
+        ctx.drawImage(img, x, y);
+
+        x += 1;
+        if (x > ctx.canvas.width) {
+            x = 0;
+        }
+        };
+    })()
+}
 
 let moveImage = (x, y) => {
     let x_screen = (x/width) * 1000
@@ -81,3 +104,4 @@ ipcRenderer.on('servo-to', function(event, to_val_x, to_val_y) {
         servo_to.innerHTML = `${to_x}, ${to_y}`
     }
 })
+

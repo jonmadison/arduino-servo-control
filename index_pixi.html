@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link rel="stylesheet" href="./style.css"/>
+    <meta charset="UTF-8">
+    <title>Dumb Spider Toy</title>
+  </head>
+  <body>
+    <h1>Dumb SPider TOy!</h1>
+    <div id="instructions">I've kidnapped a spider and tied them to a servo. 
+      Use the joystick to move the spider buddy, and press the tiny button on the breadboard
+    if you dare.</div>
+    <div id="message"></div>
+    <div class="servo-indicator"><img id="indicator-container" src="./images/spidey.png"/></div>
+    <div id="servo-to"></div>
+    <script>
+      // You can also require other files to run in this process
+      require('./renderer.js')
+    </script>
+  </body>
+</html>
