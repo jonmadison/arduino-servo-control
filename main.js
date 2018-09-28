@@ -10,8 +10,8 @@ let mainWindow
 
 function createWindow () {
   // Create the browser window.
-  mainWindow = new BrowserWindow({width: 1200, 
-                                height: 800,
+  mainWindow = new BrowserWindow({width: 800, 
+                                height: 600,
                                 backgroundColor: "#ee943b"
                               })
 
@@ -72,6 +72,8 @@ board.on("ready", function() {
   joystick.on("change", function() {
     let to_x = ((this.x+1) * 180)/2
     let to_y = ((this.y+1) * 180)/2
+    mainWindow.webContents.send('joystick-change',this.x, this.y);
+
     mainWindow.webContents.send('servo-to',to_x, to_y);
     servo.to(to_x)
   });
@@ -80,14 +82,17 @@ board.on("ready", function() {
   var button = new five.Button(2);
 
   button.on("hold", function() {
+    console.log("button hold")
     mainWindow.webContents.send('button-held');
   });
 
   button.on("press", function() {
+    console.log("button press")
     mainWindow.webContents.send('button-pressed');
   });
 
   button.on("release", function() {
+    console.log("button release")
     mainWindow.webContents.send('button-released');
   });
 

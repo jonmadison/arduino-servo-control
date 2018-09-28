@@ -5,12 +5,15 @@ body {
     background-image: url("images/IMG_1839.jpeg");
     background-size: cover;
   }
-  
+
   .centered {
     position: fixed; /* or absolute */
     top: 50%;
     left: 50%;
+    margin-top: -50px;
+    margin-left: -100px;
   }
+  
 #instructions {
     font-size: 2em;
     padding: 0px 300px 0px 300px;
